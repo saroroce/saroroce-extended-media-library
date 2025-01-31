@@ -93,3 +93,9 @@ function show_media_usage_column_data($column_name, $post_id) {
     }
 }
 add_action('manage_media_custom_column', 'show_media_usage_column_data', 10, 2);
+
+// 3. Enqueue custom script for selecting unused media
+function enqueue_custom_media_script() {
+    wp_enqueue_script('custom-media-script', plugin_dir_url(__FILE__) . 'js/custom-media-script.js', ['jquery'], '1.0', true);
+}
+add_action('admin_enqueue_scripts', 'enqueue_custom_media_script');
