@@ -1,9 +1,10 @@
 <?php
 /*
 Plugin Name: SAROROCE | Extended Media Library (ACF | Taxonomies | Elementor | Etc.)
+Plugin URI: https://github.com/saroroce/saroroce-extended-media-library
 Description: A plugin to extend the media library functionality in WordPress, adding a "Used In" column and allowing filtering and sorting images based on their usage.
 Version: 1.0
-Author: SAROROCE
+Author: SAROROCE | Web Development 
 Author URI: https://github.com/saroroce
 License: ISC
 License URI: https://opensource.org/licenses/ISC
