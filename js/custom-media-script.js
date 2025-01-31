@@ -7,7 +7,8 @@ jQuery(document).ready(function($) {
     }).prependTo('.tablenav.top .actions.bulkactions');
 
     // On button click, highlight unused media rows
-    $('#select-unused-media').on('click', function() {
+    $('#select-unused-media').on('click', function(e) {
+        e.preventDefault();
         $('tr').each(function() {
             var $row = $(this);
             if ($row.find('em:contains("Not used")').length > 0) {

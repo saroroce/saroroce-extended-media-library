@@ -85,6 +85,16 @@ function show_media_usage_column_data($column_name, $post_id) {
         }
     }
 
+    // Check if image is used in Advanced Ads plugin
+    $advanced_ads_posts = $wpdb->get_results($wpdb->prepare("\n        SELECT post_id FROM {$wpdb->prefix}postmeta \n        WHERE meta_key LIKE %s AND meta_value LIKE %s\n    ", 'advads_%', '%' . $post_id . '%'));
+
+    foreach ($advanced_ads_posts as $post) {
+        if (!in_array($post->post_id, $used_ids)) {
+            $usage[] = '<a href="' . get_edit_post_link($post->post_id) . '" target="_blank">📢 Advanced Ads: Post ID ' . $post->post_id . '</a>';
+            $used_ids[] = $post->post_id;
+        }
+    }
+
     // If file is not used
     if (empty($usage)) {
         echo '<em>Not used</em>';
@@ -99,3 +109,4 @@ function enqueue_custom_media_script() {
     wp_enqueue_script('custom-media-script', plugin_dir_url(__FILE__) . 'js/custom-media-script.js', ['jquery'], '1.0', true);
 }
 add_action('admin_enqueue_scripts', 'enqueue_custom_media_script');
+
